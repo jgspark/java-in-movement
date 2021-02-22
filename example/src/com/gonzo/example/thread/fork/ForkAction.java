@@ -42,13 +42,18 @@ public class ForkAction extends RecursiveAction {
         }
     }
 
+    /**
+     * 재귀
+     *
+     * @return
+     */
     private List<ForkAction> createSubtasks() {
 
         List<ForkAction> subtasks = new ArrayList<ForkAction>();
 
-        this.list.stream().collect(Collectors.groupingBy(i -> i / 100)).values().forEach(value -> {
-            subtasks.add(new ForkAction(value));
-        });
+        subtasks.add(new ForkAction(list.subList(0, list.size() / 2)));
+
+        subtasks.add(new ForkAction(list.subList(list.size() / 2, list.size())));
 
         return subtasks;
     }
