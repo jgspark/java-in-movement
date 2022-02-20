@@ -35,13 +35,13 @@ public class Main {
 
         service.shutdown();
 
-        // unchecked exception [RejectedExecutionException]
-        service.execute(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("start");
-            }
-        });
+//        // unchecked exception [RejectedExecutionException]
+//        service.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                System.out.println("start");
+//            }
+//        });
 
     }
 
