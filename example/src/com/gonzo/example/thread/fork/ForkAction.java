@@ -2,26 +2,29 @@ package com.gonzo.example.thread.fork;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.RecursiveAction;
+import java.util.stream.Collectors;
 
 public class ForkAction extends RecursiveAction {
 
-    private long workLoad = 0;
+    private List<Integer> list;
 
-    public ForkAction(long workLoad) {
-        this.workLoad = workLoad;
+    public ForkAction(List<Integer> list) {
+        this.list = list;
     }
 
     @Override
     protected void compute() {
 
+        int workLoad = this.list.size();
+
         String threadName = Thread.currentThread().getName();
 
-        // if work is above threshold, break tasks up into smaller tasks
-        if (this.workLoad > 16) {
+        if (this.list.size() > 100) {
 
-            System.out.println("[" + LocalTime.now() + "][" + threadName + "]" + " Splitting workLoad : " + this.workLoad);
+            System.out.println("[" + LocalTime.now() + "][" + threadName + "]" + " Splitting workLoad : " + workLoad);
 
             sleep(1000);
 
@@ -34,18 +37,18 @@ public class ForkAction extends RecursiveAction {
             }
 
         } else {
-            System.out.println("[" + LocalTime.now() + "][" + threadName + "]" + " Doing workLoad myself: " + this.workLoad);
+            System.out.println("[" + LocalTime.now() + "][" + threadName + "]" + " Doing workLoad myself: " + workLoad);
+            System.out.println(Arrays.toString(list.toArray()));
         }
     }
 
     private List<ForkAction> createSubtasks() {
+
         List<ForkAction> subtasks = new ArrayList<ForkAction>();
 
-        ForkAction subtask1 = new ForkAction(this.workLoad / 2);
-        ForkAction subtask2 = new ForkAction(this.workLoad / 2);
-
-        subtasks.add(subtask1);
-        subtasks.add(subtask2);
+        this.list.stream().collect(Collectors.groupingBy(i -> i / 100)).values().forEach(value -> {
+            subtasks.add(new ForkAction(value));
+        });
 
         return subtasks;
     }

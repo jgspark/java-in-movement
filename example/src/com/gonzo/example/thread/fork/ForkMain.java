@@ -1,7 +1,10 @@
 package com.gonzo.example.thread.fork;
 
+import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ForkMain {
 
@@ -18,7 +21,9 @@ public class ForkMain {
 
     private static void setForkJoinPool(ForkJoinPool forkJoinPool) throws InterruptedException {
 
-        ForkAction forkAction = new ForkAction(128);
+        List<Integer> list = IntStream.range(0, 1000).boxed().collect(Collectors.toList());
+
+        ForkAction forkAction = new ForkAction(list);
 
         forkJoinPool.invoke(forkAction);
 
