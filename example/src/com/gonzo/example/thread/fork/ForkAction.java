@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.RecursiveAction;
-import java.util.stream.Collectors;
 
 public class ForkAction extends RecursiveAction {
 
@@ -42,11 +41,6 @@ public class ForkAction extends RecursiveAction {
         }
     }
 
-    /**
-     * 재귀
-     *
-     * @return
-     */
     private List<ForkAction> createSubtasks() {
 
         List<ForkAction> subtasks = new ArrayList<ForkAction>();
