@@ -13,7 +13,9 @@ public class ForkMain {
         // memory init 4 pool
         ForkJoinPool forkJoinPool = new ForkJoinPool(4);
 
-        setForkJoinPool(forkJoinPool);
+//        setForkJoinPool(forkJoinPool);
+
+        setForkJoinPoolByTask(forkJoinPool);
 
         forkJoinPool.awaitTermination(5, TimeUnit.SECONDS);
 
@@ -26,6 +28,16 @@ public class ForkMain {
         ForkAction forkAction = new ForkAction(list);
 
         forkJoinPool.invoke(forkAction);
+
+    }
+
+    private static void setForkJoinPoolByTask(ForkJoinPool pool) {
+
+        List<Integer> list = IntStream.range(0, 1000).boxed().collect(Collectors.toList());
+
+        ForkTack tack = new ForkTack(list);
+
+        pool.invoke(tack);
 
     }
 
