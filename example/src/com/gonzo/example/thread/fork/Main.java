@@ -6,17 +6,17 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ForkMain {
+public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        // memory init 4 pool
+        // 선언
         ForkJoinPool forkJoinPool = new ForkJoinPool(4);
 
-//        setForkJoinPool(forkJoinPool);
-
+        // tack or action
         setForkJoinPoolByTask(forkJoinPool);
 
+        // 경과 체크
         forkJoinPool.awaitTermination(5, TimeUnit.SECONDS);
 
     }
