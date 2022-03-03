@@ -1,4 +1,4 @@
-package com.gonzo.example.cabstract;
+package com.gonzo.example.oop.cabstract;
 
 public class Main {
 
