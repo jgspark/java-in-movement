@@ -20,6 +20,6 @@ public class Lg extends Tv {
 
     @Override
     void callChannel() {
-        System.out.println("Now Channel [" + this.getChannel() + "]");
+        System.out.println(this.getSerialNum() + "\t Now Channel [" + this.getChannel() + "]");
     }
 }
