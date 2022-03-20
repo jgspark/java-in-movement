@@ -2,7 +2,12 @@ package com.gonzo.example.base.abstracttest;
 
 public class AbstractItem {
 
-  protected String name;
+  protected final String name;
 
-  protected String content;
+  protected final String content;
+
+  protected AbstractItem(String name, String content) {
+    this.name = name;
+    this.content = content;
+  }
 }
