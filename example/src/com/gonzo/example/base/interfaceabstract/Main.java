@@ -14,12 +14,12 @@ public class Main {
   }
 }
 
-abstract class Creature {
+abstract class Common {
   private int age;
   private int weight;
   private int height;
 
-  protected Creature(int age, int weight, int height) {
+  protected Common(int age, int weight, int height) {
     this.age = age;
     this.weight = weight;
     this.height = height;
@@ -61,7 +61,7 @@ abstract class Creature {
   abstract void eat();
 }
 
-abstract class Houman extends Creature {
+abstract class Houman extends Common {
 
   // 무기
   private String attackItem;
@@ -93,7 +93,7 @@ abstract class Houman extends Creature {
   }
 }
 
-abstract class Animal extends Creature {
+abstract class Animal extends Common {
 
   protected Animal(int age, int weight, int height) {
     super(age, weight, height);
