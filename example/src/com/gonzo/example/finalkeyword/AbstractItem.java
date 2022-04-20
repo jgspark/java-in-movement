@@ -1,4 +1,4 @@
-package org.example.finalkeyword;
+package com.gonzo.example.finalkeyword;
 
 public abstract class AbstractItem {
 
