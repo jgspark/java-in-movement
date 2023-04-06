@@ -1,13 +1,15 @@
 package com.gonzo.example.mutableimmutable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main3 {
 
   public static void main(String[] args) {
 
-    List<Item> arrayList =
-        List.of(new Item(1), new Item(2), new Item(3), new Item(4), new Item(5), new Item(6));
+    List<Item> arrayList = new ArrayList<>();
+
+//        List.of(new Item(1), new Item(2), new Item(3), new Item(4), new Item(5), new Item(6));
 
     System.out.println(arrayList.hashCode());
 
